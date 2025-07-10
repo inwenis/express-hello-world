@@ -1,11 +1,14 @@
 const express = require('express')
+const axios = require('axios');
 const app = express()
 const port = 3000
 
 let counter = 0;
 
-setInterval(() => {
+setInterval(async () => {
   counter++;
+  const resp = await axios.get('https://express-hello-world-3zfl.onrender.com/counter');
+  console.log(`Counter updated: ${counter}, Response from server: ${resp.data}`);
 }, 1000);
 
 app.get('/', (req, res) => {
