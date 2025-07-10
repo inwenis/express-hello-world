@@ -7,8 +7,12 @@ let counter = 0;
 
 setInterval(async () => {
   counter++;
-  const resp = await axios.get('https://express-hello-world-3zfl.onrender.com/counter');
-  console.log(`Counter updated: ${counter}, Response from server: ${resp.data}`);
+  try {
+    const resp = await axios.get('https://express-hello-world-3zfl.onrender.com/counter');
+    console.log(`Counter updated: ${counter}, Response from server: ${resp.data}`);
+  } catch (error) {
+    console.error(`Error fetching counter: ${error.message}`);
+  }
 }, 1000);
 
 app.get('/', (req, res) => {
